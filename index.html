@@ -489,6 +489,57 @@
             margin-top: 0.5rem;
         }
 
+        /* Appointment Notice */
+        .appointment-notice {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(78, 205, 196, 0.1));
+            border: 2px solid rgba(243, 156, 18, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 3rem auto 4rem;
+            max-width: 700px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .appointment-notice::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(243, 156, 18, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
+        }
+
+        .notice-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .appointment-notice h3 {
+            color: #f39c12;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .appointment-notice p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+            z-index: 1;
+        }
+
         /* Contact Section */
         .contact {
             padding: 100px 0;
@@ -680,6 +731,23 @@
             .about-grid {
                 grid-template-columns: 1fr;
             }
+
+            .appointment-notice {
+                margin: 2rem auto 3rem;
+                padding: 1.5rem;
+            }
+            
+            .notice-icon {
+                font-size: 2.5rem;
+            }
+            
+            .appointment-notice h3 {
+                font-size: 1.5rem;
+            }
+            
+            .appointment-notice p {
+                font-size: 1rem;
+            }
             
             .contact-content {
                 grid-template-columns: 1fr;
@@ -746,26 +814,25 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Bullale Associates LLC</h1>
-        <p class="slogan">Your imagination is our next masterpiece</p>
-        <p class="description">
-            Transforming Ideas Into Visual Excellence Since 2024<br>
-            <span style="font-size: 1rem; opacity: 0.9;">
-                From stunning graphics to powerful websites, we don't just meet expectations – we shatter them.
-            </span>
-        </p>
-        <a href="#contact" class="cta-button">
-            Start Your Project Today
-        </a>
-        <div class="trust-indicators">
-            <span>✓ Free Consultation</span> • 
-            <span>✓ 100% Satisfaction</span> • 
-            <span>✓ On-Time Delivery</span>
+        <div class="hero-content">
+            <h1>Bullale Associates LLC</h1>
+            <p class="slogan">Your imagination is our next masterpiece</p>
+            <p class="description">
+                Transforming Ideas Into Visual Excellence Since 2024<br>
+                <span style="font-size: 1rem; opacity: 0.9;">
+                    From stunning graphics to powerful websites, we don't just meet expectations – we shatter them.
+                </span>
+            </p>
+            <a href="#contact" class="cta-button">
+                Start Your Project Today
+            </a>
+            <div class="trust-indicators">
+                <span>✓ Free Consultation</span> • 
+                <span>✓ 100% Satisfaction</span> • 
+                <span>✓ On-Time Delivery</span>
+            </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- Services Section -->
     <section id="services" class="services">
@@ -838,6 +905,14 @@
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title fade-in">Get In Touch</h2>
+            
+            <!-- Important Notice -->
+            <div class="appointment-notice fade-in">
+                <div class="notice-icon">📅</div>
+                <h3>Appointment Only</h3>
+                <p>Currently, we don't accept walk-ins. Please schedule an appointment via phone call or email.</p>
+            </div>
+            
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item fade-in">
@@ -858,7 +933,15 @@
                         <div class="icon">🏢</div>
                         <div>
                             <h4>Address</h4>
-                            <p>7 W Travelers Trl<br>Burnsville, MN 55337</p>
+                            <p>912 E 24th St Suite<br>Minneapolis, MN 55404</p>
+                        </div>
+                    </div>
+                    <div class="contact-item fade-in">
+                        <div class="icon">🕐</div>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p><strong>Monday - Friday</strong><br>10:00 AM - 5:00 PM</p>
+                            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">Closed on Weekends</p>
                         </div>
                     </div>
                 </div>
