@@ -37,12 +37,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1.25rem 0;
             border-bottom: 2px solid rgba(46, 204, 64, 0.3);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -90,15 +90,10 @@
             font-size: 2.2rem;
             font-weight: 800;
             font-family: 'Poppins', sans-serif;
-            color: #fff;
-            background: linear-gradient(45deg, #2ecc40, #27ae60, #2ecc40);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            color: #2ecc40;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             letter-spacing: -0.02em;
+            transition: all 0.3s ease;
         }
 
         @keyframes gradientShift {
@@ -114,7 +109,7 @@
         }
 
         .nav-links a {
-            color: #fff;
+            color: #333;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.05rem;
@@ -180,10 +175,12 @@
             transform: rotate(-45deg) translate(7px, -6px);
         }
 
-        /* Hero Section */
+        /* Hero Section with Dynamic Gradient Background */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5a27 50%, #27ae60 100%);
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a27 35%, #27ae60 70%, #2ecc40 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -193,6 +190,12 @@
             overflow: hidden;
         }
 
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .hero::before {
             content: '';
             position: absolute;
@@ -200,10 +203,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="rgba(46,204,64,0.1)"/><circle cx="80" cy="80" r="1" fill="rgba(46,204,64,0.1)"/><circle cx="40" cy="60" r="1" fill="rgba(46,204,64,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            animation: float 20s ease-in-out infinite;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            animation: overlayPulse 8s ease-in-out infinite;
         }
-        
+
+        @keyframes overlayPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
         .hero::after {
             content: '';
             position: absolute;
@@ -211,19 +221,158 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
-            pointer-events: none;
+            background: linear-gradient(
+                45deg,
+                transparent 20%,
+                rgba(46, 204, 64, 0.1) 40%,
+                transparent 60%,
+                rgba(39, 174, 96, 0.1) 80%,
+                transparent 100%
+            );
+            background-size: 200% 200%;
+            animation: diagonalShimmer 12s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+        @keyframes diagonalShimmer {
+            0% { background-position: -200% -200%; }
+            100% { background-position: 200% 200%; }
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1200px;
             z-index: 10;
             position: relative;
+        }
+
+        /* Services Hexagon Grid */
+        .services-showcase {
+            margin: 4rem 0 2rem;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            min-height: 400px;
+        }
+
+        .hexagon-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+        }
+
+        .service-hexagon {
+            width: 120px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .service-hexagon:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .service-hexagon .icon {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .service-hexagon .title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.1;
+            padding: 0 5px;
+        }
+
+        /* Positioning for hexagon layout */
+        .hex-1 { animation-delay: 0.1s; }
+        .hex-2 { animation-delay: 0.2s; }
+        .hex-3 { animation-delay: 0.3s; }
+        .hex-4 { animation-delay: 0.4s; }
+        .hex-5 { animation-delay: 0.5s; }
+        .hex-6 { animation-delay: 0.6s; }
+
+        .service-hexagon {
+            animation: hexagonFadeIn 0.8s ease-out both;
+        }
+
+        @keyframes hexagonFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5) translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Central services title */
+        .services-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-align: center;
+            background: rgba(46, 204, 64, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            z-index: 5;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .services-showcase {
+                margin: 2rem 0;
+                min-height: 300px;
+            }
+            
+            .service-hexagon {
+                width: 90px;
+                height: 90px;
+                margin: 5px;
+            }
+            
+            .service-hexagon .icon {
+                font-size: 1.5rem;
+            }
+            
+            .service-hexagon .title {
+                font-size: 0.65rem;
+            }
+            
+            .services-title {
+                font-size: 1.2rem;
+                padding: 0.8rem 1rem;
+            }
         }
 
         .hero h1 {
@@ -267,21 +416,11 @@
             font-weight: 400;
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
         }
-        
-        .hero .description span {
-            display: inline-block;
-            animation: fadeIn 1s ease-out 0.9s both;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 0.9; }
-        }
 
         .cta-button {
             display: inline-block;
             padding: 18px 45px;
-            background: #2ecc40;
+            background: linear-gradient(45deg, #2ecc40, #27ae60);
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -322,13 +461,8 @@
 
         .cta-button:hover {
             transform: translateY(-3px) scale(1.05);
-            background: #27ae60;
+            background: linear-gradient(45deg, #27ae60, #2ecc40);
             box-shadow: 0 15px 40px rgba(46, 204, 64, 0.4);
-        }
-        
-        .cta-button:active {
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 8px 20px rgba(46, 204, 64, 0.3);
         }
 
         .trust-indicators {
@@ -356,16 +490,49 @@
             }
         }
 
-        /* Services Section */
+        /* Services Section with Mesh Gradient Background */
         .services {
             padding: 100px 0;
-            background: #f8f9fa;
+            background: 
+                linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f1f8e9 100%);
+            background-size: 300% 300%;
+            animation: meshGradient 20s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes meshGradient {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(46, 204, 64, 0.02) 50%, transparent 100%);
+            background-size: 200% 100%;
+            animation: horizontalSweep 15s linear infinite;
+        }
+
+        @keyframes horizontalSweep {
+            0% { background-position: -200% 0%; }
+            100% { background-position: 200% 0%; }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -400,7 +567,7 @@
         }
 
         .service-card {
-            background: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f9fffe 100%);
             padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
@@ -423,17 +590,20 @@
         }
 
         .service-card::after {
-            content: '✨';
+            content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 1.5rem;
-            opacity: 0;
-            transform: scale(0) rotate(-180deg);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(46, 204, 64, 0.05), transparent);
+            transition: left 0.6s ease;
         }
 
-        /* Enhanced Hover Effects */
+        .service-card:hover::after {
+            left: 100%;
+        }
+
         .service-card:hover {
             transform: translateY(-15px) scale(1.02);
             box-shadow: 0 35px 70px rgba(0,0,0,0.2);
@@ -444,18 +614,6 @@
 
         .service-card:hover::before {
             height: 8px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60, #2ecc40);
-            animation: shimmer 2s infinite;
-        }
-
-        .service-card:hover::after {
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200px 0; }
-            100% { background-position: 200px 0; }
         }
 
         .service-card h3 {
@@ -472,26 +630,6 @@
             color: #2ecc40;
             transform: translateX(10px);
             text-shadow: 0 3px 6px rgba(0,0,0,0.15);
-            font-size: 1.8rem;
-        }
-
-        .service-card:hover h3::before {
-            content: '→ ';
-            color: #27ae60;
-            font-weight: bold;
-            animation: bounceArrow 1s infinite;
-        }
-
-        @keyframes bounceArrow {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(0);
-            }
-            40% {
-                transform: translateX(5px);
-            }
-            60% {
-                transform: translateX(3px);
-            }
         }
 
         .service-card p {
@@ -499,40 +637,31 @@
             line-height: 1.8;
             font-size: 1.05rem;
             transition: all 0.3s ease;
-            transform: translateY(0);
         }
 
         .service-card:hover p {
             color: #555;
             transform: translateY(-2px);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        /* Pulse effect for service cards */
-        @keyframes cardPulse {
-            0% {
-                box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            }
-            50% {
-                box-shadow: 0 20px 50px rgba(46, 204, 64, 0.15);
-            }
-            100% {
-                box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            }
-        }
-
-        .service-card:hover {
-            animation: cardPulse 2s infinite;
-        }
-
-        /* About Section */
+        /* About Section with Animated Gradient */
         .about {
             padding: 100px 0;
-            background: linear-gradient(135deg, #1a472a 0%, #2d5a27 50%, #27ae60 100%);
+            background: linear-gradient(135deg, #1a472a 0%, #2d5a27 25%, #27ae60 50%, #2ecc40 75%, #1a472a 100%);
+            background-size: 400% 400%;
+            animation: aboutGradientShift 20s ease infinite;
             color: white;
             text-align: center;
             position: relative;
             overflow: hidden;
+        }
+
+        @keyframes aboutGradientShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 0%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 100%; }
+            100% { background-position: 0% 50%; }
         }
 
         .about::before {
@@ -542,19 +671,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="1.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
-            animation: float 25s ease-in-out infinite reverse;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: aboutShimmer 10s ease-in-out infinite;
         }
-        
-        .about::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
-            pointer-events: none;
+
+        @keyframes aboutShimmer {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
         .about .section-title {
@@ -583,38 +709,139 @@
 
         .about-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
             margin-top: 3rem;
             text-align: left;
         }
 
         .about-card {
-            background: rgba(255,255,255,0.1);
-            padding: 1.75rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(46, 204, 64, 0.3);
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248, 255, 250, 0.95) 100%);
+            padding: 2.5rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 3px solid rgba(46, 204, 64, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
         }
 
-        .about-card:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-8px) scale(1.03);
+        .about-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            border: 3px solid #e74c3c;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-card:hover .about-icon {
+            transform: scale(1.1) rotate(5deg);
+            filter: drop-shadow(0 4px 8px rgba(46, 204, 64, 0.3));
             border-color: #2ecc40;
-            box-shadow: 0 10px 30px rgba(46, 204, 64, 0.3);
+        }
+
+        /* Speech bubble tail */
+        .about-card::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248, 255, 250, 0.95) 100%);
+            border-right: 3px solid rgba(46, 204, 64, 0.2);
+            border-bottom: 3px solid rgba(46, 204, 64, 0.2);
+            transform: rotate(45deg);
+            border-radius: 0 0 5px 0;
+        }
+
+        /* Shimmer effect */
+        .about-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(46, 204, 64, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .about-card:hover::after {
+            left: 100%;
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(46, 204, 64, 0.15);
+            border-color: #2ecc40;
+        }
+
+        .about-card:hover::before {
+            border-color: #2ecc40;
+        }
+
+        .quote-mark {
+            font-size: 3rem;
+            color: rgba(46, 204, 64, 0.3);
+            font-family: 'Georgia', serif;
+            line-height: 1;
+            margin-bottom: 1rem;
         }
 
         .about-card h3 {
-            margin-bottom: 0.75rem;
-            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            transition: all 0.3s ease;
+            letter-spacing: -0.02em;
+            color: #2ecc40;
+        }
+
+        .about-card:hover h3 {
+            transform: translateX(5px);
+            color: #27ae60;
         }
 
         .about-card p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.7;
+            color: #555;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card:hover p {
+            color: #333;
+            transform: translateY(-2px);
+        }
+
+        .testimonial-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+            border-top: 1px solid rgba(46, 204, 64, 0.1);
+            padding-top: 1rem;
         }
 
         .about-quote {
@@ -651,17 +878,18 @@
         .appointment-notice::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(46, 204, 64, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(46, 204, 64, 0.2), transparent);
+            animation: noticeShimmer 4s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.3; }
+        @keyframes noticeShimmer {
+            0% { left: -100%; }
+            50% { left: -50%; }
+            100% { left: 100%; }
         }
 
         .notice-icon {
@@ -698,13 +926,22 @@
             font-weight: 400;
         }
 
-        /* Contact Section */
+        /* Contact Section with Dynamic Background */
         .contact {
             padding: 100px 0;
-            background: linear-gradient(135deg, #0f1f0f 0%, #1a2f1a 50%, #0d1a0d 100%);
+            background: linear-gradient(135deg, #02156b 0%, #030230 25%, #081874 50%, #090a36 75%, #060d36 100%);
+            background-size: 400% 400%;
+            animation: contactGradientMove 25s ease infinite;
             color: white;
             position: relative;
             overflow: hidden;
+        }
+
+        @keyframes contactGradientMove {
+            0% { background-position: 0% 50%; }
+            33% { background-position: 100% 0%; }
+            66% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
         }
 
         .contact::before {
@@ -714,8 +951,15 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="50" height="50" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="rgba(46,204,64,0.05)"/><circle cx="25" cy="25" r="1" fill="rgba(46,204,64,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-            opacity: 0.5;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(46, 204, 64, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(39, 174, 96, 0.1) 0%, transparent 50%);
+            animation: contactRadialPulse 12s ease-in-out infinite;
+        }
+
+        @keyframes contactRadialPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
         }
 
         .contact .section-title {
@@ -753,6 +997,23 @@
             border: 2px solid rgba(46, 204, 64, 0.12);
             transition: all 0.3s ease;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(46, 204, 64, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .contact-item:hover::before {
+            left: 100%;
         }
 
         .contact-item:hover {
@@ -782,12 +1043,6 @@
             background: linear-gradient(45deg, #27ae60, #2ecc40);
             transform: scale(1.1) rotate(5deg);
             box-shadow: 0 6px 20px rgba(46, 204, 64, 0.4);
-            animation: iconPulse 1s ease-in-out infinite;
-        }
-        
-        @keyframes iconPulse {
-            0%, 100% { transform: scale(1.1) rotate(5deg); }
-            50% { transform: scale(1.2) rotate(5deg); }
         }
 
         .contact-item h4 {
@@ -810,10 +1065,32 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(46, 204, 64, 0.15);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 40%, rgba(46, 204, 64, 0.02) 50%, transparent 60%);
+            background-size: 200% 200%;
+            animation: formBackgroundShift 8s ease-in-out infinite;
+        }
+
+        @keyframes formBackgroundShift {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
         }
 
         .form-group {
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
         }
 
         .form-group label {
@@ -873,6 +1150,7 @@
             letter-spacing: 0.05em;
             position: relative;
             overflow: hidden;
+            z-index: 1;
         }
 
         .submit-btn span {
@@ -960,11 +1238,11 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(0, 0, 0, 0.98);
+                background: rgba(255, 255, 255, 0.98);
                 flex-direction: column;
                 padding: 2rem;
                 border-top: 2px solid rgba(46, 204, 64, 0.3);
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
                 backdrop-filter: blur(10px);
             }
             
@@ -1050,10 +1328,6 @@
 
             .logo-text {
                 font-size: 1.75rem;
-            }
-
-            .service-card:hover {
-                transform: translateY(-10px) scale(1.01);
             }
         }
 
@@ -1157,21 +1431,45 @@
                     We're not just another design agency – we're your creative partners in success.
                 </p>
                 <div class="about-grid">
-                    <div class="about-card">
-                        <h3 style="color: #2ecc40;">🏆 Award-Winning Quality</h3>
-                        <p>Every project receives our signature attention to detail and creative excellence.</p>
+                    <div class="about-card fade-in">
+                        <div class="about-icon">🏆</div>
+                        <div class="quote-mark">"</div>
+                        <h3>Award-Winning Quality</h3>
+                        <p>Every project receives our signature attention to detail and creative excellence. We don't just meet expectations – we exceed them.</p>
+                        <div class="testimonial-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="testimonial-author">Excellence Guaranteed</div>
                     </div>
-                    <div class="about-card">
-                        <h3 style="color: #27ae60;">⚡ Lightning-Fast Delivery</h3>
-                        <p>Your time is valuable. We deliver exceptional results without the wait.</p>
+                    <div class="about-card fade-in">
+                        <div class="about-icon">⚡</div>
+                        <div class="quote-mark">"</div>
+                        <h3>Lightning-Fast Delivery</h3>
+                        <p>Your time is valuable. We deliver exceptional results without the wait, ensuring your projects are completed on schedule.</p>
+                        <div class="testimonial-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="testimonial-author">On-Time Promise</div>
                     </div>
-                    <div class="about-card">
-                        <h3 style="color: #2ecc40;">💡 Innovation First</h3>
-                        <p>Cutting-edge designs that set you apart from the competition.</p>
+                    <div class="about-card fade-in">
+                        <div class="about-icon">💡</div>
+                        <div class="quote-mark">"</div>
+                        <h3>Innovation First</h3>
+                        <p>Cutting-edge designs that set you apart from the competition. We stay ahead of trends to keep your brand modern.</p>
+                        <div class="testimonial-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="testimonial-author">Creative Leadership</div>
                     </div>
-                    <div class="about-card">
-                        <h3 style="color: #27ae60;">🤝 Personal Touch</h3>
-                        <p>Direct communication with our team – no middlemen, just results.</p>
+                    <div class="about-card fade-in">
+                        <div class="about-icon">🤝</div>
+                        <div class="quote-mark">"</div>
+                        <h3>Personal Touch</h3>
+                        <p>Direct communication with our team – no middlemen, just results. We build relationships, not just designs.</p>
+                        <div class="testimonial-rating">
+                            <div class="stars">★★★★★</div>
+                        </div>
+                        <div class="testimonial-author">Client-Focused Approach</div>
                     </div>
                 </div>
                 <p class="about-quote">
@@ -1345,14 +1643,14 @@
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(13, 26, 13, 0.98)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
                 navbar.style.borderBottom = '2px solid rgba(46, 204, 64, 0.4)';
-                navbar.style.boxShadow = '0 6px 30px rgba(0, 0, 0, 0.7)';
+                navbar.style.boxShadow = '0 6px 30px rgba(0, 0, 0, 0.15)';
                 navbar.style.padding = '1rem 0';
             } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
                 navbar.style.borderBottom = '2px solid rgba(46, 204, 64, 0.3)';
-                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
                 navbar.style.padding = '1.25rem 0';
             }
         });
