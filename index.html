@@ -23,6 +23,13 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        html {
+            overflow-x: hidden;
+            width: 100%;
         }
 
         /* Typography */
@@ -413,45 +420,28 @@
             }
         }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(46, 204, 64, 0.3);
-            animation: slideInUp 1s ease-out;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            transition: all 0.3s ease;
-            cursor: default;
-            white-space: nowrap;
-            overflow: visible;
-        }
-        
-        .hero h1:hover {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 40px rgba(46, 204, 64, 0.5);
-            transform: scale(1.02);
-        }
-
         .hero .slogan {
-            font-size: 1.75rem;
+            font-size: 3rem;
             margin-bottom: 2rem;
             font-style: italic;
-            font-weight: 300;
-            opacity: 0.9;
-            animation: slideInUp 1s ease-out 0.3s both;
+            font-weight: 400;
+            opacity: 0.95;
+            animation: slideInUp 1s ease-out both;
             letter-spacing: 0.02em;
             transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 30px rgba(46, 204, 64, 0.3);
+            line-height: 1.2;
         }
         
         .hero .slogan:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 20px rgba(46, 204, 64, 0.5);
+            transform: scale(1.02);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3), 0 0 40px rgba(46, 204, 64, 0.5);
         }
 
         .hero .description {
             font-size: 1.25rem;
             margin-bottom: 3rem;
-            animation: slideInUp 1s ease-out 0.6s both;
+            animation: slideInUp 1s ease-out 0.3s both;
             line-height: 1.8;
             font-weight: 400;
             text-shadow: 0 1px 2px rgba(0,0,0,0.3);
@@ -470,7 +460,7 @@
             letter-spacing: 0.02em;
             transition: all 0.3s ease;
             box-shadow: 0 10px 30px rgba(46, 204, 64, 0.3);
-            animation: slideInUp 1s ease-out 0.9s both;
+            animation: slideInUp 1s ease-out 0.6s both;
             text-transform: uppercase;
             position: relative;
             overflow: hidden;
@@ -510,7 +500,7 @@
             margin-top: 2rem;
             font-size: 1rem;
             opacity: 0.8;
-            animation: slideInUp 1s ease-out 1.2s both;
+            animation: slideInUp 1s ease-out 0.9s both;
             font-weight: 500;
             letter-spacing: 0.02em;
             text-shadow: 0 0 10px rgba(46, 204, 64, 0.3);
@@ -1269,6 +1259,17 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                max-width: 100vw;
+            }
+
+            * {
+                max-width: 100%;
+                box-sizing: border-box;
+            }
+
             .mobile-menu-btn {
                 display: flex;
             }
@@ -1308,37 +1309,42 @@
                 padding-left: 1.5rem;
             }
 
+            .hero {
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
                 text-align: center;
                 padding: 0 1rem;
                 max-width: 100%;
+                width: 100%;
             }
 
             .hero-text {
                 text-align: center;
                 order: 1;
+                width: 100%;
+                max-width: 100%;
             }
 
             .hero-images {
                 height: 280px;
                 margin: 0 auto;
-                max-width: 400px;
+                max-width: 100%;
+                width: 100%;
                 order: 2;
             }
             
-            .hero h1 {
-                font-size: 2.5rem;
-                white-space: nowrap;
-                overflow: visible;
-                margin-bottom: 1.5rem;
-                line-height: 1;
-            }
-            
             .hero .slogan {
-                font-size: 1.2rem;
+                font-size: 2rem;
                 margin-bottom: 1.5rem;
+                line-height: 1.1;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .hero .description {
@@ -1346,12 +1352,15 @@
                 margin-bottom: 2rem;
                 text-align: center;
                 line-height: 1.6;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .cta-button {
                 padding: 15px 35px;
                 font-size: 1rem;
                 margin-bottom: 1.5rem;
+                max-width: 100%;
             }
 
             .trust-indicators {
@@ -1359,11 +1368,19 @@
                 text-align: center;
                 line-height: 1.4;
                 margin-top: 1rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .trust-indicators span {
                 margin: 0 0.5rem;
                 display: inline-block;
+            }
+
+            .nav-container {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
             }
             
             .services-grid {
@@ -1377,6 +1394,7 @@
             .appointment-notice {
                 margin: 2rem auto 3rem;
                 padding: 2rem;
+                max-width: calc(100% - 2rem);
             }
             
             .notice-icon {
@@ -1402,6 +1420,9 @@
             
             .container {
                 padding: 0 1rem;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
             .logo-image {
@@ -1411,6 +1432,44 @@
 
             .logo-text {
                 font-size: 1.75rem;
+                white-space: nowrap;
+            }
+        }
+
+        /* Mobile-specific overflow fixes */
+        @media (max-width: 480px) {
+            html, body {
+                overflow-x: hidden !important;
+                width: 100% !important;
+                max-width: 100vw !important;
+                position: relative;
+            }
+
+            .hero-content {
+                padding: 0 0.5rem;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero .slogan {
+                font-size: 1.8rem;
+                padding: 0 0.5rem;
+            }
+
+            .hero .description {
+                padding: 0 0.5rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .trust-indicators {
+                padding: 0 0.5rem;
             }
         }
 
@@ -1454,7 +1513,6 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Bullale Associates</h1>
                 <p class="slogan">Your imagination is our next masterpiece</p>
                 <p class="description">
                     Transforming Ideas Into Visual Excellence Since 2024<br>
@@ -1466,8 +1524,8 @@
                     <span>Start Your Project Today</span>
                 </a>
                 <div class="trust-indicators">
-                    <span>✓ Free Consultation</span> • 
-                    <span>✓ 100% Satisfaction</span> • 
+                    <span>✓ Free Consultation</span>
+                    <span>✓ 100% Satisfaction</span>
                     <span>✓ On-Time Delivery</span>
                 </div>
             </div>
