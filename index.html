@@ -206,26 +206,39 @@
         }
 
         .hero-images {
-            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
             height: 500px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .rotating-image {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-image-box {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .hero-image-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: all 0.3s ease;
         }
 
-        .rotating-image.active {
-            opacity: 1;
+        .hero-image-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-image-box:first-child {
+            grid-row: span 2;
         }
 
         /* Trust Indicators */
@@ -888,11 +901,15 @@
                     <a href="#contact" class="cta-button">Start Your Project Today</a>
                 </div>
                 <div class="hero-images">
-                    <img src="Home_first_tab.png" alt="Business Meeting" class="rotating-image active">
-                    <img src="Home_second_tab.png" alt="Professional Web Development" class="rotating-image">
-                    <img src="business-cards-design.png" alt="Professional Business Cards Design" class="rotating-image">
-                    <img src="wedding-invitations.png" alt="Elegant Wedding Invitations" class="rotating-image">
-                    <img src="business-signage.png" alt="Business Signage and Promotional Materials" class="rotating-image">
+                    <div class="hero-image-box">
+                        <img src="Home_first_tab.png" alt="Business Meeting">
+                    </div>
+                    <div class="hero-image-box">
+                        <img src="business-cards-design.png" alt="Professional Business Cards Design">
+                    </div>
+                    <div class="hero-image-box">
+                        <img src="wedding-invitations.png" alt="Elegant Wedding Invitations">
+                    </div>
                 </div>
             </div>
         </div>
@@ -931,7 +948,7 @@
                         <div class="company-avatar">A</div>
                         <div class="company-info">
                             <h4>Allmetro Immigration Services</h4>
-                            <div class="review-date">2024-08-15</div>
+                            <div class="review-date">Apr 4th 2025</div>
                         </div>
                         <div class="google-icon">G</div>
                     </div>
@@ -944,7 +961,7 @@
                         <div class="company-avatar">A</div>
                         <div class="company-info">
                             <h4>Amin Travel & Tax Services</h4>
-                            <div class="review-date">2024-07-22</div>
+                            <div class="review-date">Aug 5th 2025</div>
                         </div>
                         <div class="google-icon">G</div>
                     </div>
@@ -957,7 +974,7 @@
                         <div class="company-avatar">D</div>
                         <div class="company-info">
                             <h4>Dahabshiil</h4>
-                            <div class="review-date">2024-06-10</div>
+                            <div class="review-date">Feb 10th 2025</div>
                         </div>
                         <div class="google-icon">G</div>
                     </div>
@@ -970,7 +987,7 @@
                         <div class="company-avatar">S</div>
                         <div class="company-info">
                             <h4>Sagal Restaurant</h4>
-                            <div class="review-date">2024-05-28</div>
+                            <div class="review-date">Oct 2nd 2024</div>
                         </div>
                         <div class="google-icon">G</div>
                     </div>
@@ -1235,20 +1252,6 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
-
-        // Image rotation
-        function rotateImages() {
-            const images = document.querySelectorAll('.rotating-image');
-            let currentIndex = 0;
-            
-            setInterval(() => {
-                images[currentIndex].classList.remove('active');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].classList.add('active');
-            }, 4000);
-        }
-
-        rotateImages();
 
         // Contact form handling
         document.getElementById('contactForm').addEventListener('submit', function(e) {
