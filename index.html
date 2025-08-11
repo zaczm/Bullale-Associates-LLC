@@ -486,6 +486,8 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
         }
 
         .portfolio-item:hover {
@@ -506,6 +508,7 @@
 
         .portfolio-content {
             padding: 1.5rem;
+            position: relative;
         }
 
         .portfolio-content h4 {
@@ -518,6 +521,149 @@
         .portfolio-content p {
             color: #444;
             font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .view-showroom-btn {
+            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .view-showroom-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 64, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 95%;
+            max-width: 1200px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 2rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .modal-header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .close {
+            position: absolute;
+            right: 2rem;
+            top: 2rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .showroom-gallery {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .showroom-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .showroom-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .showroom-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .showroom-item-content {
+            padding: 1.5rem;
+        }
+
+        .showroom-item h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a472a;
+            margin-bottom: 0.5rem;
+        }
+
+        .showroom-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .client-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
         }
 
         /* Process Section */
@@ -842,6 +988,39 @@
             .container {
                 padding: 0 1rem;
             }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 98%;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                padding: 1.5rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .close {
+                right: 1.5rem;
+                top: 1.5rem;
+                font-size: 1.5rem;
+                width: 35px;
+                height: 35px;
+            }
+
+            .showroom-gallery {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .view-showroom-btn {
+                font-size: 0.8rem;
+                padding: 8px 16px;
+            }
         }
 
         /* Special Effects */
@@ -1062,6 +1241,7 @@
                     <div class="portfolio-content">
                         <h4>Professional Business Cards</h4>
                         <p>Custom business card designs for various industries</p>
+                        <button class="view-showroom-btn" onclick="openModal('businessCardsModal')">View Showroom</button>
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
@@ -1069,6 +1249,7 @@
                     <div class="portfolio-content">
                         <h4>Website Development</h4>
                         <p>Responsive websites built for business success</p>
+                        <button class="view-showroom-btn" onclick="openModal('websiteModal')">View Showroom</button>
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
@@ -1076,6 +1257,7 @@
                     <div class="portfolio-content">
                         <h4>Wedding Invitations</h4>
                         <p>Elegant designs for your special day</p>
+                        <button class="view-showroom-btn" onclick="openModal('weddingModal')">View Showroom</button>
                     </div>
                 </div>
                 <div class="portfolio-item fade-in">
@@ -1083,11 +1265,184 @@
                     <div class="portfolio-content">
                         <h4>Business Signage</h4>
                         <p>Professional signage and promotional materials</p>
+                        <button class="view-showroom-btn" onclick="openModal('signageModal')">View Showroom</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Business Cards Modal -->
+    <div id="businessCardsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Professional Business Cards Showroom</h2>
+                <p>Explore our custom business card designs created for various local businesses</p>
+                <span class="close" onclick="closeModal('businessCardsModal')">&times;</span>
+            </div>
+            <div class="showroom-gallery">
+                <div class="showroom-item">
+                    <img src="amin-business-cards.png" alt="Amin Travel & Tax Services Business Cards">
+                    <div class="showroom-item-content">
+                        <h4>Amin Travel & Tax Services</h4>
+                        <p>Professional business cards featuring comprehensive travel and tax service branding with modern color schemes and clear contact information. Includes detailed service listings and contact details.</p>
+                        <span class="client-badge">Travel & Tax Services</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="dahabshiil-business-cards.png" alt="Dahabshiil Financial Services Cards">
+                    <div class="showroom-item-content">
+                        <h4>Dahabshiil Financial Services</h4>
+                        <p>Professional business cards with consistent green branding powered by Dahabshiil Inc. Features clean design with contact information and financial services branding.</p>
+                        <span class="client-badge">Financial Services</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="allmetro-business-cards.png" alt="Allmetro Travel Services Cards">
+                    <div class="showroom-item-content">
+                        <h4>Allmetro Travel & Immigration</h4>
+                        <p>Clean, professional blue-themed design emphasizing trust and reliability for immigration, travel, and tax consultation services. Features professional consultant branding with QR codes and certifications.</p>
+                        <span class="client-badge">Travel & Immigration</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="soma-business-cards.png" alt="Soma Consulting Business Cards">
+                    <div class="showroom-item-content">
+                        <h4>Soma Consulting</h4>
+                        <p>Vibrant, eye-catching design for travel and tax services with comprehensive service listings, bilingual content, and modern graphics. Features multiple contact methods and service categories.</p>
+                        <span class="client-badge">Consulting Services</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="business-cards-design.png" alt="Professional Services Cards">
+                    <div class="showroom-item-content">
+                        <h4>Additional Professional Designs</h4>
+                        <p>Various business card designs for professional consultants featuring clean layouts and corporate branding across different industries.</p>
+                        <span class="client-badge">Professional Services</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="business-cards-design.png" alt="Custom Business Cards">
+                    <div class="showroom-item-content">
+                        <h4>Custom Designs Collection</h4>
+                        <p>A collection of unique business card designs tailored to different industries and business needs with personalized branding solutions.</p>
+                        <span class="client-badge">Various Industries</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Website Development Modal -->
+    <div id="websiteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Website Development Showroom</h2>
+                <p>Professional websites we've built for businesses across different industries</p>
+                <span class="close" onclick="closeModal('websiteModal')">&times;</span>
+            </div>
+            <div class="showroom-gallery">
+                <div class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Professional Website">
+                    <div class="showroom-item-content">
+                        <h4>Corporate Business Website</h4>
+                        <p>Modern, responsive website with professional design and user-friendly navigation for business growth.</p>
+                        <span class="client-badge">Corporate</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Restaurant Website">
+                    <div class="showroom-item-content">
+                        <h4>Restaurant & Cafe Sites</h4>
+                        <p>Visually appealing websites for restaurants with menu displays and online ordering capabilities.</p>
+                        <span class="client-badge">Restaurant</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Service Business Website">
+                    <div class="showroom-item-content">
+                        <h4>Service-Based Businesses</h4>
+                        <p>Professional websites for service providers with clear service descriptions and contact forms.</p>
+                        <span class="client-badge">Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wedding Invitations Modal -->
+    <div id="weddingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Wedding Invitations Showroom</h2>
+                <p>Beautiful wedding invitation designs that capture your special moments</p>
+                <span class="close" onclick="closeModal('weddingModal')">&times;</span>
+            </div>
+            <div class="showroom-gallery">
+                <div class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Elegant Wedding Invitations">
+                    <div class="showroom-item-content">
+                        <h4>Elegant Floral Designs</h4>
+                        <p>Beautiful wedding invitations featuring botanical elements and sophisticated typography.</p>
+                        <span class="client-badge">Wedding Stationery</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Modern Wedding Cards">
+                    <div class="showroom-item-content">
+                        <h4>Modern Wedding Suites</h4>
+                        <p>Contemporary wedding invitation designs with matching RSVP cards and details cards.</p>
+                        <span class="client-badge">Complete Suites</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Custom Wedding Designs">
+                    <div class="showroom-item-content">
+                        <h4>Custom Wedding Themes</h4>
+                        <p>Personalized wedding invitations designed to match your unique love story and wedding theme.</p>
+                        <span class="client-badge">Custom Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Signage Modal -->
+    <div id="signageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Business Signage Showroom</h2>
+                <p>Professional signage and promotional materials for businesses</p>
+                <span class="close" onclick="closeModal('signageModal')">&times;</span>
+            </div>
+            <div class="showroom-gallery">
+                <div class="showroom-item">
+                    <img src="business-signage.png" alt="Business Signage">
+                    <div class="showroom-item-content">
+                        <h4>Outdoor Business Signs</h4>
+                        <p>Eye-catching outdoor signage designed to attract customers and represent your brand professionally.</p>
+                        <span class="client-badge">Outdoor Signage</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="business-signage.png" alt="Promotional Materials">
+                    <div class="showroom-item-content">
+                        <h4>Promotional Banners</h4>
+                        <p>High-impact promotional banners and displays for events, sales, and marketing campaigns.</p>
+                        <span class="client-badge">Marketing Materials</span>
+                    </div>
+                </div>
+                <div class="showroom-item">
+                    <img src="business-signage.png" alt="Interior Signage">
+                    <div class="showroom-item-content">
+                        <h4>Interior Business Graphics</h4>
+                        <p>Professional interior signage including wall graphics, directional signs, and branding elements.</p>
+                        <span class="client-badge">Interior Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Process Section -->
     <section id="process" class="process">
@@ -1223,6 +1578,17 @@
     </footer>
 
     <script>
+        // Modal functionality (must be in global scope)
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
@@ -1262,6 +1628,30 @@
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
         });
 
         // Contact form handling
