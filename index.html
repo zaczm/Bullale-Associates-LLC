@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bullale Associates LLC - Professional Graphic Design & Web Development</title>
+    <meta name="description" content="Bullale Associates LLC - Professional Graphic Design & Web Development services in Minneapolis. Expert business cards, website development, restaurant design, wedding invitations, and office branding.">
+    <meta name="keywords" content="graphic design, web development, business cards, Minneapolis design, wedding invitations, restaurant design, office branding">
+    <meta name="author" content="Bullale Associates LLC">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Bullale Associates LLC - Professional Graphic Design & Web Development">
+    <meta property="og:description" content="Transform your business with stunning graphic design and professional web development services in Minneapolis, MN.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bullale.com">
+    <meta property="og:image" content="https://www.bullale.com/Bullale embelem _logo.png">
+    
+    <title>Bullale Associates LLC - Professional Graphic Design & Web Development in Minneapolis</title>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,11 +28,43 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-green: #2ecc40;
+            --dark-green: #1a472a;
+            --light-green: #27ae60;
+            --text-dark: #222;
+            --text-medium: #444;
+            --text-light: #666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 5px 20px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #222;
+            color: var(--text-dark);
             overflow-x: hidden;
+        }
+
+        /* Accessibility - Skip to Content */
+        .skip-to-content {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--primary-green);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 0 0 4px 0;
+        }
+
+        .skip-to-content:focus {
+            top: 0;
         }
 
         /* Navigation */
@@ -33,7 +77,12 @@
             z-index: 1000;
             padding: 1rem 0;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
         }
 
         .nav-container {
@@ -49,7 +98,11 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
         }
 
         .logo img {
@@ -62,7 +115,7 @@
         .logo span {
             font-size: 1.8rem;
             font-weight: 800;
-            color: #2ecc40;
+            color: var(--primary-green);
             font-family: 'Poppins', sans-serif;
         }
 
@@ -70,19 +123,22 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #222;
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
         }
 
-        .nav-links a:hover {
-            color: #2ecc40;
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: var(--primary-green);
+            outline: none;
         }
 
         .nav-links a::after {
@@ -92,11 +148,12 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #2ecc40;
+            background: var(--primary-green);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
             width: 100%;
         }
 
@@ -106,23 +163,56 @@
             flex-direction: column;
             cursor: pointer;
             padding: 8px;
+            background: transparent;
+            border: none;
+            z-index: 1001;
         }
 
         .mobile-menu-btn span {
             width: 25px;
             height: 3px;
-            background: #2ecc40;
+            background: var(--primary-green);
             margin: 3px 0;
             transition: 0.3s;
             border-radius: 3px;
         }
 
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .mobile-overlay.active {
+            display: block;
+        }
+
         /* Hero Section */
         .hero {
-            padding: 120px 0 80px;
+            padding: 140px 0 100px;
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             position: relative;
             overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
         }
 
         .hero::before {
@@ -153,34 +243,34 @@
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
         .hero-text h1 {
             font-size: 3.5rem;
             font-weight: 800;
-            color: #1a472a;
-            margin-bottom: 1.5rem;
+            color: var(--dark-green);
+            margin-bottom: 2rem;
             font-family: 'Poppins', sans-serif;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         .hero-text .highlight {
-            color: #2ecc40;
+            color: var(--primary-green);
             position: relative;
         }
 
         .hero-text p {
-            font-size: 1.3rem;
-            color: #444;
+            font-size: 1.2rem;
+            color: var(--text-medium);
             margin-bottom: 2rem;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         .hero-text .subtitle {
             font-size: 1.1rem;
-            color: #555;
+            color: var(--text-light);
             margin-bottom: 3rem;
             font-weight: 500;
         }
@@ -188,49 +278,68 @@
         .cta-button {
             display: inline-block;
             padding: 18px 40px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             box-shadow: 0 10px 30px rgba(46, 204, 64, 0.3);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .cta-button:hover {
+        .cta-button:hover,
+        .cta-button:focus {
             transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(46, 204, 64, 0.4);
+            outline: 3px solid rgba(46, 204, 64, 0.3);
+            outline-offset: 2px;
         }
 
         .hero-images {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            gap: 15px;
-            height: 500px;
+            gap: 20px;
+            height: 550px;
         }
 
         .hero-image-box {
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
             position: relative;
         }
 
+        .hero-image-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(46, 204, 64, 0.1) 100%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
         .hero-image-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-image-box:hover::after {
+            opacity: 1;
         }
 
         .hero-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .hero-image-box:hover img {
@@ -244,7 +353,7 @@
         /* Trust Indicators */
         .trust-section {
             padding: 60px 0;
-            background: #f8f9fa;
+            background: var(--bg-light);
             text-align: center;
         }
 
@@ -260,23 +369,28 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .stars {
             color: #ffc107;
             font-size: 1.5rem;
+            letter-spacing: 2px;
         }
 
         .rating-text {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #222;
+            color: var(--text-dark);
         }
 
         .trust-badges {
             display: flex;
             gap: 2rem;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .trust-badge {
@@ -284,54 +398,66 @@
             align-items: center;
             gap: 0.5rem;
             font-weight: 600;
-            color: #2ecc40;
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            background: white;
+            border-radius: 25px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .trust-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         /* Google Reviews Section */
         .google-reviews {
-            padding: 80px 0;
-            background: #f8f9fa;
+            padding: 100px 0;
+            background: white;
         }
 
         .reviews-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
         .review-card {
             background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
         .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(46, 204, 64, 0.2);
         }
 
         .review-header {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             gap: 0.75rem;
         }
 
         .company-avatar {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            flex-shrink: 0;
         }
 
         .company-info {
@@ -339,33 +465,33 @@
         }
 
         .company-info h4 {
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: #222;
-            margin: 0;
-            line-height: 1.2;
+            color: var(--text-dark);
+            margin: 0 0 4px 0;
+            line-height: 1.3;
         }
 
         .company-info h4 a {
-            color: #222;
+            color: var(--text-dark);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
-        .company-info h4 a:hover {
-            color: #2ecc40;
+        .company-info h4 a:hover,
+        .company-info h4 a:focus {
+            color: var(--primary-green);
             text-decoration: underline;
         }
 
         .review-date {
-            font-size: 0.8rem;
-            color: #555;
-            margin-top: 2px;
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
         .google-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             background: #4285f4;
             color: white;
             border-radius: 50%;
@@ -373,59 +499,62 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            flex-shrink: 0;
         }
 
         .review-stars {
             color: #ffc107;
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
         }
 
         .review-text {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #333;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-medium);
         }
 
         /* Services Section */
         .services {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-light);
         }
 
         .section-title {
             text-align: center;
             font-size: 3rem;
             font-weight: 800;
-            color: #1a472a;
-            margin-bottom: 1rem;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
             font-family: 'Poppins', sans-serif;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.3rem;
-            color: #444;
+            font-size: 1.25rem;
+            color: var(--text-medium);
             margin-bottom: 4rem;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.8;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 4rem;
         }
 
         .service-card {
             background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s ease;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
@@ -437,110 +566,114 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 4px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            height: 5px;
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 60px rgba(46, 204, 64, 0.2);
             border-color: rgba(46, 204, 64, 0.3);
         }
 
         .service-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            color: #2ecc40;
+            display: block;
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            color: #1a472a;
+            color: var(--dark-green);
             margin-bottom: 1rem;
             font-family: 'Poppins', sans-serif;
         }
 
         .service-card p {
-            color: #444;
-            line-height: 1.7;
+            color: var(--text-medium);
+            line-height: 1.8;
             font-size: 1.05rem;
         }
 
         /* Portfolio Section */
         .portfolio {
             padding: 100px 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: white;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 4rem;
         }
 
         .portfolio-item {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
             cursor: pointer;
-            position: relative;
+            border: 2px solid transparent;
         }
 
         .portfolio-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(46, 204, 64, 0.3);
         }
 
         .portfolio-item img {
             width: 100%;
-            height: 250px;
+            height: 260px;
             object-fit: cover;
-            transition: all 0.3s ease;
+            transition: var(--transition);
         }
 
         .portfolio-item:hover img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
         .portfolio-content {
-            padding: 1.5rem;
-            position: relative;
+            padding: 2rem;
         }
 
         .portfolio-content h4 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: 700;
-            color: #1a472a;
-            margin-bottom: 0.5rem;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
         }
 
         .portfolio-content p {
-            color: #444;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
+            color: var(--text-medium);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .view-showroom-btn {
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.9rem;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.95rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .view-showroom-btn:hover {
+        .view-showroom-btn:hover,
+        .view-showroom-btn:focus {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 204, 64, 0.4);
+            box-shadow: 0 8px 20px rgba(46, 204, 64, 0.4);
+            outline: 3px solid rgba(46, 204, 64, 0.3);
+            outline-offset: 2px;
         }
 
         /* Modal Styles */
@@ -552,41 +685,60 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .modal-content {
             background: white;
-            margin: 2% auto;
+            margin: 3% auto;
             padding: 0;
-            border-radius: 20px;
+            border-radius: 25px;
             width: 95%;
             max-width: 1200px;
-            max-height: 90vh;
+            max-height: 88vh;
             overflow-y: auto;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .modal-header {
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
             color: white;
-            padding: 2rem;
-            border-radius: 20px 20px 0 0;
+            padding: 2.5rem;
+            border-radius: 25px 25px 0 0;
             position: relative;
         }
 
         .modal-header h2 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-family: 'Poppins', sans-serif;
+            font-weight: 700;
         }
 
         .modal-header p {
-            margin: 0.5rem 0 0;
-            opacity: 0.9;
-            font-size: 1.1rem;
+            margin: 0.75rem 0 0;
+            opacity: 0.95;
+            font-size: 1.15rem;
         }
 
         .close {
@@ -597,79 +749,84 @@
             font-weight: bold;
             color: white;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
-        .close:hover {
+        .close:hover,
+        .close:focus {
             background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.1);
+            transform: rotate(90deg);
+            border-color: white;
         }
 
         .showroom-gallery {
-            padding: 2rem;
+            padding: 3rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
         }
 
         .showroom-item {
-            background: #f8f9fa;
-            border-radius: 15px;
+            background: var(--bg-light);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
         .showroom-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(46, 204, 64, 0.3);
         }
 
         .showroom-item img {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: cover;
         }
 
         .showroom-item-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
 
         .showroom-item h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #1a472a;
-            margin-bottom: 0.5rem;
+            color: var(--dark-green);
+            margin-bottom: 0.75rem;
         }
 
         .showroom-item p {
-            color: #666;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .client-badge {
             display: inline-block;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
         /* Process Section */
         .process {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-light);
         }
 
         .process-steps {
@@ -682,40 +839,51 @@
         .process-step {
             text-align: center;
             position: relative;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .step-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
             margin: 0 auto 1.5rem;
             box-shadow: 0 10px 30px rgba(46, 204, 64, 0.3);
         }
 
         .process-step h4 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #1a472a;
+            color: var(--dark-green);
             margin-bottom: 1rem;
             font-family: 'Poppins', sans-serif;
         }
 
         .process-step p {
-            color: #444;
-            line-height: 1.6;
+            color: var(--text-medium);
+            line-height: 1.8;
+            font-size: 1.05rem;
         }
 
         /* Testimonials */
         .testimonials {
             padding: 100px 0;
-            background: linear-gradient(135deg, #1a472a 0%, #2ecc40 100%);
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
             color: white;
             position: relative;
             overflow: hidden;
@@ -747,7 +915,7 @@
         }
 
         .testimonials .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.95);
             position: relative;
             z-index: 10;
         }
@@ -755,7 +923,7 @@
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             margin-top: 4rem;
             position: relative;
             z-index: 10;
@@ -763,11 +931,11 @@
 
         .testimonial-card {
             background: rgba(255, 255, 255, 0.15);
-            padding: 2.5rem;
-            border-radius: 20px;
+            padding: 3rem;
+            border-radius: 25px;
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
@@ -788,15 +956,15 @@
         }
 
         .testimonial-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .testimonial-text {
-            font-size: 1.1rem;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
             font-style: italic;
             position: relative;
@@ -805,222 +973,224 @@
 
         .testimonial-author {
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.05rem;
             position: relative;
             z-index: 2;
         }
 
         .testimonial-rating {
             color: #ffc107;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.3rem;
             position: relative;
             z-index: 2;
+            letter-spacing: 2px;
         }
 
         /* Contact Section */
         .contact {
             padding: 100px 0;
-            background: #f8f9fa;
+            background: white;
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             margin-top: 4rem;
         }
 
         .contact-info {
-            space-y: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .contact-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            align-items: flex-start;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
         .contact-item:hover {
             transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(46, 204, 64, 0.15);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(46, 204, 64, 0.3);
         }
 
         .contact-item .icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 1.5rem;
-            font-size: 1.3rem;
-            color: white;
+            font-size: 1.4rem;
+            flex-shrink: 0;
         }
 
         .contact-item h4 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #1a472a;
-            margin-bottom: 0.3rem;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
         }
 
         .contact-item p {
-            color: #444;
-            font-size: 1rem;
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            line-height: 1.6;
         }
 
         .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            background: var(--bg-light);
+            padding: 3.5rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-md);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 600;
-            color: #222;
+            color: var(--text-dark);
+            font-size: 1.05rem;
         }
 
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
-            padding: 15px;
+            padding: 16px;
             border: 2px solid #e9ecef;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             font-family: 'Inter', sans-serif;
+            background: white;
         }
 
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
-            border-color: #2ecc40;
-            box-shadow: 0 0 0 3px rgba(46, 204, 64, 0.1);
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 4px rgba(46, 204, 64, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(45deg, #2ecc40, #27ae60);
+            background: linear-gradient(45deg, var(--primary-green), var(--light-green));
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.15rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(46, 204, 64, 0.4);
+        .submit-btn:hover,
+        .submit-btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(46, 204, 64, 0.4);
+            outline: 3px solid rgba(46, 204, 64, 0.3);
+            outline-offset: 2px;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 1.2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            border: 2px solid #c3e6cb;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .form-success-message.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Footer */
         .footer {
-            background: #1a472a;
+            background: var(--dark-green);
             color: white;
             text-align: center;
-            padding: 3rem 0;
+            padding: 3.5rem 0;
         }
 
         .footer p {
-            font-size: 1rem;
-            opacity: 0.9;
+            font-size: 1.05rem;
+            opacity: 0.95;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: flex;
-            }
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(46, 204, 64, 0.4);
+            transition: var(--transition);
+            border: none;
+        }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                flex-direction: column;
-                padding: 2rem;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
+        .back-to-top.show {
+            display: flex;
+        }
 
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .modal-content {
-                margin: 5% auto;
-                width: 98%;
-                max-height: 85vh;
-            }
-
-            .modal-header {
-                padding: 1.5rem;
-            }
-
-            .modal-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .close {
-                right: 1.5rem;
-                top: 1.5rem;
-                font-size: 1.5rem;
-                width: 35px;
-                height: 35px;
-            }
-
-            .showroom-gallery {
-                grid-template-columns: 1fr;
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            .view-showroom-btn {
-                font-size: 0.8rem;
-                padding: 8px 16px;
-            }
+        .back-to-top:hover,
+        .back-to-top:focus {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(46, 204, 64, 0.5);
         }
 
         /* Special Effects */
@@ -1036,32 +1206,188 @@
         }
 
         .appointment-notice {
-            background: linear-gradient(135deg, rgba(46, 204, 64, 0.1) 0%, rgba(39, 174, 96, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(46, 204, 64, 0.12) 0%, rgba(39, 174, 96, 0.12) 100%);
             border: 2px solid rgba(46, 204, 64, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem 0;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
             text-align: center;
         }
 
         .notice-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
         }
 
         .appointment-notice h3 {
-            color: #2ecc40;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+            color: var(--primary-green);
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
             font-weight: 700;
+        }
+
+        .appointment-notice p {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                gap: 1rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateX(0);
+            }
+
+            .nav-links a {
+                padding: 1rem;
+                border-bottom: 1px solid #e9ecef;
+            }
+
+            .hero {
+                padding: 120px 0 60px;
+                min-height: auto;
+            }
+
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-text p {
+                font-size: 1.05rem;
+            }
+
+            .hero-images {
+                height: 400px;
+                gap: 15px;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .modal-content {
+                margin: 5% auto;
+                width: 98%;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .modal-header h2 {
+                font-size: 1.7rem;
+            }
+
+            .close {
+                right: 1.5rem;
+                top: 1.5rem;
+                font-size: 1.5rem;
+                width: 40px;
+                height: 40px;
+            }
+
+            .showroom-gallery {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .trust-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar,
+            .mobile-menu-btn,
+            .back-to-top,
+            .modal {
+                display: none !important;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Skip to Content for Accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#home" class="logo">
+            <a href="#home" class="logo" aria-label="Bullale Associates Home">
                 <img src="Bullale embelem _logo.png" alt="Bullale Associates Logo">
                 <span>Bullale Associates</span>
             </a>
@@ -1070,35 +1396,39 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#process">Process</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="mobile-menu-btn">
+            <button class="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay"></div>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1><span class="highlight">Graphic Design</span> For Businesses and Individuals</h1>
-                    <p>Technology promises three things: simplicity, efficiency, and effectiveness. To us, that's stunning. Our design service is built on a system that has been refined and perfected to create your beautiful brand presence.</p>
-                    <p class="subtitle">We will build you stunning designs, and we are committed to being the best decision your company makes.</p>
+                    <h1><span class="highlight">Stunning Designs</span> That Grow Your Business</h1>
+                    <p>We create beautiful, functional design solutions for businesses and individuals who demand excellence. From professional business cards to complete brand identities and websites.</p>
+                    <p class="subtitle">Your imagination is our next masterpiece. Let's build something amazing together.</p>
                     <a href="#contact" class="cta-button">Start Your Project Today</a>
                 </div>
                 <div class="hero-images">
                     <div class="hero-image-box">
-                        <img src="Home_first_tab.png" alt="Business Meeting">
+                        <img src="Home_first_tab.png" alt="Professional business meeting showcasing our design work">
                     </div>
                     <div class="hero-image-box">
-                        <img src="business-cards-design.png" alt="Professional Business Cards Design">
+                        <img src="business-cards-design.png" alt="Premium business card designs for professionals">
                     </div>
                     <div class="hero-image-box">
-                        <img src="wedding-invitations.png" alt="Elegant Wedding Invitations">
+                        <img src="wedding-invitations.png" alt="Elegant wedding invitation designs">
                     </div>
                 </div>
             </div>
@@ -1106,12 +1436,12 @@
     </section>
 
     <!-- Trust Section -->
-    <section class="trust-section">
+    <section class="trust-section" aria-label="Trust indicators">
         <div class="container">
             <div class="trust-content">
                 <div class="rating-display">
-                    <div class="stars">★★★★★</div>
-                    <span class="rating-text">Our 5 Star rating on</span>
+                    <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+                    <span class="rating-text">5.0 Rating on</span>
                     <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" style="height: 30px; margin-left: 10px;">
                 </div>
                 <div class="trust-badges">
@@ -1130,438 +1460,466 @@
     </section>
 
     <!-- Google Reviews Section -->
-    <section class="google-reviews">
+    <section class="google-reviews" aria-labelledby="reviews-title">
         <div class="container">
+            <h2 id="reviews-title" class="section-title fade-in">What Our Clients Say</h2>
+            <p class="section-subtitle fade-in">Trusted by businesses across Minneapolis and beyond</p>
+            
             <div class="reviews-grid">
-                <div class="review-card fade-in">
+                <article class="review-card fade-in">
                     <div class="review-header">
-                        <div class="company-avatar">A</div>
+                        <div class="company-avatar" aria-hidden="true">A</div>
                         <div class="company-info">
                             <h4><a href="https://www.allmetrotravel.com/" target="_blank" rel="noopener noreferrer">Allmetro Immigration Services</a></h4>
-                            <div class="review-date">Apr 4th 2025</div>
+                            <time class="review-date" datetime="2024-04-04">April 4, 2024</time>
                         </div>
-                        <div class="google-icon">G</div>
+                        <div class="google-icon" aria-label="Google review">G</div>
                     </div>
-                    <div class="review-stars">★★★★★</div>
+                    <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="review-text">Bullale Associates delivered exceptional design work for our immigration office. Their attention to detail and professional approach made our space look incredibly welcoming and trustworthy for our clients.</p>
-                </div>
+                </article>
 
-                <div class="review-card fade-in">
+                <article class="review-card fade-in">
                     <div class="review-header">
-                        <div class="company-avatar">A</div>
+                        <div class="company-avatar" aria-hidden="true">A</div>
                         <div class="company-info">
                             <h4>Amin Travel & Tax Services</h4>
-                            <div class="review-date">Aug 5th 2025</div>
+                            <time class="review-date" datetime="2024-08-05">August 5, 2024</time>
                         </div>
-                        <div class="google-icon">G</div>
+                        <div class="google-icon" aria-label="Google review">G</div>
                     </div>
-                    <div class="review-stars">★★★★★</div>
+                    <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="review-text">Outstanding business card design and office branding! The team understood our vision perfectly and created materials that truly represent our travel and tax services business.</p>
-                </div>
+                </article>
 
-                <div class="review-card fade-in">
+                <article class="review-card fade-in">
                     <div class="review-header">
-                        <div class="company-avatar">D</div>
+                        <div class="company-avatar" aria-hidden="true">D</div>
                         <div class="company-info">
                             <h4><a href="https://www.dahabshiil.com/us/" target="_blank" rel="noopener noreferrer">Dahabshiil</a></h4>
-                            <div class="review-date">Feb 10th 2025</div>
+                            <time class="review-date" datetime="2025-02-10">February 10, 2025</time>
                         </div>
-                        <div class="google-icon">G</div>
+                        <div class="google-icon" aria-label="Google review">G</div>
                     </div>
-                    <div class="review-stars">★★★★★</div>
+                    <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="review-text">Professional signage and promotional materials that perfectly captured our financial services brand. Bullale Associates exceeded our expectations with their creative solutions and timely delivery.</p>
-                </div>
+                </article>
 
-                <div class="review-card fade-in">
+                <article class="review-card fade-in">
                     <div class="review-header">
-                        <div class="company-avatar">S</div>
+                        <div class="company-avatar" aria-hidden="true">S</div>
                         <div class="company-info">
                             <h4><a href="https://sagalrestaurantandcafe.com/" target="_blank" rel="noopener noreferrer">Sagal Restaurant</a></h4>
-                            <div class="review-date">Oct 2nd 2024</div>
+                            <time class="review-date" datetime="2024-10-02">October 2, 2024</time>
                         </div>
-                        <div class="google-icon">G</div>
+                        <div class="google-icon" aria-label="Google review">G</div>
                     </div>
-                    <div class="review-stars">★★★★★</div>
+                    <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="review-text">Amazing restaurant design work! From menu designs to interior graphics, they transformed our space into something that truly reflects our cuisine and culture. Highly recommended!</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services" aria-labelledby="services-title">
         <div class="container">
-            <h2 class="section-title fade-in">Design To Achieve Your Business Goals</h2>
-            <p class="section-subtitle fade-in">Our highest priority is creating business designs for busy entrepreneurs and individuals. This means that we must consistently produce stunning and functional results that are born from incredible communication.</p>
+            <h2 id="services-title" class="section-title fade-in">Design To Achieve Your Business Goals</h2>
+            <p class="section-subtitle fade-in">Creating stunning and functional designs through exceptional communication and expertise.</p>
             
             <div class="services-grid">
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏢</div>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">🏢</span>
                     <h3>Office Interior & Exterior Design</h3>
                     <p>Transform your workspace with professional graphic design solutions that enhance your brand presence and create inspiring work environments that reflect your company's values.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🍽️</div>
+                </article>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">🍽️</span>
                     <h3>Restaurant Design</h3>
                     <p>Create memorable dining experiences with stunning interior and exterior graphic designs that attract customers and reflect your restaurant's unique personality and culinary brand.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💼</div>
+                </article>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">💼</span>
                     <h3>High-Quality Business Cards</h3>
                     <p>Make lasting first impressions with professionally designed business cards for both business entities and individuals, crafted with attention to detail and premium materials.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💻</div>
+                </article>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">💻</span>
                     <h3>Website Development</h3>
                     <p>Build your online presence with custom business websites that are responsive, user-friendly, and optimized for search engines to drive your business success.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💍</div>
+                </article>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">💍</span>
                     <h3>Wedding Posters & Invitations</h3>
                     <p>Celebrate your special moments with beautifully designed wedding posters and invitation cards that capture the essence of your love story and create lasting memories.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🤝</div>
+                </article>
+                <article class="service-card fade-in">
+                    <span class="service-icon" aria-hidden="true">🤝</span>
                     <h3>One-on-One Consultations</h3>
                     <p>Dedicated discussions about your specific needs via Zoom, phone, or in-person meetings to ensure we understand and exceed your expectations every time.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
+    <section id="portfolio" class="portfolio" aria-labelledby="portfolio-title">
         <div class="container">
-            <h2 class="section-title fade-in">Our Best Design Work</h2>
-            <p class="section-subtitle fade-in">Does your brand show your best work? Don't neglect your visual presence. Get our design services today!</p>
+            <h2 id="portfolio-title" class="section-title fade-in">Our Best Design Work</h2>
+            <p class="section-subtitle fade-in">Elevate your brand with our proven design expertise. See how we've helped businesses shine.</p>
             
             <div class="portfolio-grid">
-                <div class="portfolio-item fade-in">
-                    <img src="business-cards-design.png" alt="Business Cards Design">
+                <article class="portfolio-item fade-in">
+                    <img src="business-cards-design.png" alt="Collection of professional business card designs" loading="lazy">
                     <div class="portfolio-content">
                         <h4>Professional Business Cards</h4>
-                        <p>Custom business card designs for various industries</p>
-                        <button class="view-showroom-btn" onclick="openModal('businessCardsModal')">View Showroom</button>
+                        <p>Custom business card designs for various industries including travel, tax services, immigration, and consulting.</p>
+                        <button class="view-showroom-btn" onclick="openModal('businessCardsModal')" aria-label="View business cards showroom">View Showroom</button>
                     </div>
-                </div>
-                <div class="portfolio-item fade-in">
-                    <img src="Home_second_tab.png" alt="Web Development">
+                </article>
+                <article class="portfolio-item fade-in">
+                    <img src="Home_second_tab.png" alt="Modern responsive website designs" loading="lazy">
                     <div class="portfolio-content">
                         <h4>Website Development</h4>
-                        <p>Responsive websites built for business success</p>
-                        <button class="view-showroom-btn" onclick="openModal('websiteModal')">View Showroom</button>
+                        <p>Responsive websites built for business success including corporate sites, healthcare platforms, and service businesses.</p>
+                        <button class="view-showroom-btn" onclick="openModal('websiteModal')" aria-label="View website development showroom">View Showroom</button>
                     </div>
-                </div>
-                <div class="portfolio-item fade-in">
-                    <img src="wedding-invitations.png" alt="Wedding Invitations">
+                </article>
+                <article class="portfolio-item fade-in">
+                    <img src="wedding-invitations.png" alt="Elegant wedding invitation designs" loading="lazy">
                     <div class="portfolio-content">
                         <h4>Wedding Invitations</h4>
-                        <p>Elegant designs for your special day</p>
-                        <button class="view-showroom-btn" onclick="openModal('weddingModal')">View Showroom</button>
+                        <p>Elegant designs for your special day with custom themes and beautiful typography.</p>
+                        <button class="view-showroom-btn" onclick="openModal('weddingModal')" aria-label="View wedding invitations showroom">View Showroom</button>
                     </div>
-                </div>
-                <div class="portfolio-item fade-in">
-                    <img src="business-signage.png" alt="Business Signage">
+                </article>
+                <article class="portfolio-item fade-in">
+                    <img src="business-signage.png" alt="Professional business signage and promotional materials" loading="lazy">
                     <div class="portfolio-content">
                         <h4>Business Signage</h4>
-                        <p>Professional signage and promotional materials</p>
-                        <button class="view-showroom-btn" onclick="openModal('signageModal')">View Showroom</button>
+                        <p>Professional signage and promotional materials that capture attention and build your brand.</p>
+                        <button class="view-showroom-btn" onclick="openModal('signageModal')" aria-label="View business signage showroom">View Showroom</button>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Business Cards Modal -->
-    <div id="businessCardsModal" class="modal">
+    <div id="businessCardsModal" class="modal" role="dialog" aria-labelledby="businessCardsModalTitle" aria-modal="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Professional Business Cards Showroom</h2>
+                <h2 id="businessCardsModalTitle">Professional Business Cards Showroom</h2>
                 <p>Explore our custom business card designs created for various local businesses</p>
-                <span class="close" onclick="closeModal('businessCardsModal')">&times;</span>
+                <button class="close" onclick="closeModal('businessCardsModal')" aria-label="Close modal">&times;</button>
             </div>
             <div class="showroom-gallery">
-                <div class="showroom-item">
-                    <img src="amin-business-cards.png" alt="Amin Travel & Tax Services Business Cards">
+                <article class="showroom-item">
+                    <img src="amin-business-cards.png" alt="Amin Travel & Tax Services Business Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Amin Travel & Tax Services</h4>
                         <p>Professional business cards featuring comprehensive travel and tax service branding with modern color schemes and clear contact information. Includes detailed service listings and contact details.</p>
                         <span class="client-badge">Travel & Tax Services</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="dahabshiil-business-cards.png" alt="Dahabshiil Financial Services Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="dahabshiil-business-cards.png" alt="Dahabshiil Financial Services Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Dahabshiil Financial Services</h4>
                         <p>Professional business cards with consistent green branding powered by Dahabshiil Inc. Features clean design with contact information and financial services branding.</p>
                         <span class="client-badge">Financial Services</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="allmetro-business-cards.png" alt="Allmetro Travel Services Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="allmetro-business-cards.png" alt="Allmetro Travel Services Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Allmetro Travel & Immigration</h4>
                         <p>Clean, professional blue-themed design emphasizing trust and reliability for immigration, travel, and tax consultation services. Features professional consultant branding with QR codes and certifications.</p>
                         <span class="client-badge">Travel & Immigration</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="soma-business-cards.png" alt="Soma Consulting Business Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="soma-business-cards.png" alt="Soma Consulting Business Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Soma Consulting</h4>
                         <p>Vibrant, eye-catching design for travel and tax services with comprehensive service listings, bilingual content, and modern graphics. Features multiple contact methods and service categories.</p>
                         <span class="client-badge">Consulting Services</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="business-cards-design.png" alt="Professional Services Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="business-cards-design.png" alt="Professional Services Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Additional Professional Designs</h4>
                         <p>Various business card designs for professional consultants featuring clean layouts and corporate branding across different industries.</p>
                         <span class="client-badge">Professional Services</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="business-cards-design.png" alt="Custom Business Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="business-cards-design.png" alt="Custom Business Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Custom Designs Collection</h4>
                         <p>A collection of unique business card designs tailored to different industries and business needs with personalized branding solutions.</p>
                         <span class="client-badge">Various Industries</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 
     <!-- Website Development Modal -->
-    <div id="websiteModal" class="modal">
+    <div id="websiteModal" class="modal" role="dialog" aria-labelledby="websiteModalTitle" aria-modal="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Website Development Showroom</h2>
+                <h2 id="websiteModalTitle">Website Development Showroom</h2>
                 <p>Professional websites we've built for businesses across different industries</p>
-                <span class="close" onclick="closeModal('websiteModal')">&times;</span>
+                <button class="close" onclick="closeModal('websiteModal')" aria-label="Close modal">&times;</button>
             </div>
             <div class="showroom-gallery">
-                <div class="showroom-item">
-                    <img src="Home_second_tab.png" alt="Professional Website">
+                <article class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Professional Website" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Corporate Business Website</h4>
-                        <p>Modern, responsive website with professional design and user-friendly navigation for business growth.</p>
+                        <p>Modern, responsive website with professional design and user-friendly navigation for business growth and enhanced online presence.</p>
                         <span class="client-badge">Corporate</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="Home_second_tab.png" alt="Restaurant Website">
+                </article>
+                <article class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Reliable Recuperative Care Website" loading="lazy">
+                    <div class="showroom-item-content">
+                        <h4>Reliable Recuperative Care</h4>
+                        <p>Professional healthcare website for recuperative care services, featuring accessible design, clear service information, and patient-focused navigation for individuals experiencing homelessness in Minnesota.</p>
+                        <span class="client-badge">Healthcare Services</span>
+                    </div>
+                </article>
+                <article class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Restaurant Website" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Restaurant & Cafe Sites</h4>
-                        <p>Visually appealing websites for restaurants with menu displays and online ordering capabilities.</p>
+                        <p>Visually appealing websites for restaurants with menu displays, online ordering capabilities, and beautiful food photography.</p>
                         <span class="client-badge">Restaurant</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="Home_second_tab.png" alt="Service Business Website">
+                </article>
+                <article class="showroom-item">
+                    <img src="Home_second_tab.png" alt="Service Business Website" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Service-Based Businesses</h4>
-                        <p>Professional websites for service providers with clear service descriptions and contact forms.</p>
+                        <p>Professional websites for service providers with clear service descriptions, contact forms, and conversion-optimized design.</p>
                         <span class="client-badge">Services</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 
     <!-- Wedding Invitations Modal -->
-    <div id="weddingModal" class="modal">
+    <div id="weddingModal" class="modal" role="dialog" aria-labelledby="weddingModalTitle" aria-modal="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Wedding Invitations Showroom</h2>
+                <h2 id="weddingModalTitle">Wedding Invitations Showroom</h2>
                 <p>Beautiful wedding invitation designs that capture your special moments</p>
-                <span class="close" onclick="closeModal('weddingModal')">&times;</span>
+                <button class="close" onclick="closeModal('weddingModal')" aria-label="Close modal">&times;</button>
             </div>
             <div class="showroom-gallery">
-                <div class="showroom-item">
-                    <img src="wedding-invitations.png" alt="Elegant Wedding Invitations">
+                <article class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Elegant Wedding Invitations" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Elegant Floral Designs</h4>
-                        <p>Beautiful wedding invitations featuring botanical elements and sophisticated typography.</p>
+                        <p>Beautiful wedding invitations featuring botanical elements and sophisticated typography perfect for garden or romantic weddings.</p>
                         <span class="client-badge">Wedding Stationery</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="wedding-invitations.png" alt="Modern Wedding Cards">
+                </article>
+                <article class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Modern Wedding Cards" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Modern Wedding Suites</h4>
-                        <p>Contemporary wedding invitation designs with matching RSVP cards and details cards.</p>
+                        <p>Contemporary wedding invitation designs with matching RSVP cards and details cards featuring clean lines and modern aesthetics.</p>
                         <span class="client-badge">Complete Suites</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="wedding-invitations.png" alt="Custom Wedding Designs">
+                </article>
+                <article class="showroom-item">
+                    <img src="wedding-invitations.png" alt="Custom Wedding Designs" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Custom Wedding Themes</h4>
-                        <p>Personalized wedding invitations designed to match your unique love story and wedding theme.</p>
+                        <p>Personalized wedding invitations designed to match your unique love story and wedding theme with custom colors and motifs.</p>
                         <span class="client-badge">Custom Design</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 
     <!-- Business Signage Modal -->
-    <div id="signageModal" class="modal">
+    <div id="signageModal" class="modal" role="dialog" aria-labelledby="signageModalTitle" aria-modal="true">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Business Signage Showroom</h2>
+                <h2 id="signageModalTitle">Business Signage Showroom</h2>
                 <p>Professional signage and promotional materials for businesses</p>
-                <span class="close" onclick="closeModal('signageModal')">&times;</span>
+                <button class="close" onclick="closeModal('signageModal')" aria-label="Close modal">&times;</button>
             </div>
             <div class="showroom-gallery">
-                <div class="showroom-item">
-                    <img src="business-signage.png" alt="Business Signage">
+                <article class="showroom-item">
+                    <img src="business-signage.png" alt="Business Signage" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Outdoor Business Signs</h4>
-                        <p>Eye-catching outdoor signage designed to attract customers and represent your brand professionally.</p>
+                        <p>Eye-catching outdoor signage designed to attract customers and represent your brand professionally with weather-resistant materials.</p>
                         <span class="client-badge">Outdoor Signage</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="business-signage.png" alt="Promotional Materials">
+                </article>
+                <article class="showroom-item">
+                    <img src="business-signage.png" alt="Promotional Materials" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Promotional Banners</h4>
-                        <p>High-impact promotional banners and displays for events, sales, and marketing campaigns.</p>
+                        <p>High-impact promotional banners and displays for events, sales, and marketing campaigns that capture attention and drive results.</p>
                         <span class="client-badge">Marketing Materials</span>
                     </div>
-                </div>
-                <div class="showroom-item">
-                    <img src="business-signage.png" alt="Interior Signage">
+                </article>
+                <article class="showroom-item">
+                    <img src="business-signage.png" alt="Interior Signage" loading="lazy">
                     <div class="showroom-item-content">
                         <h4>Interior Business Graphics</h4>
-                        <p>Professional interior signage including wall graphics, directional signs, and branding elements.</p>
+                        <p>Professional interior signage including wall graphics, directional signs, and branding elements that enhance your workspace.</p>
                         <span class="client-badge">Interior Design</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </div>
 
     <!-- Process Section -->
-    <section id="process" class="process">
+    <section id="process" class="process" aria-labelledby="process-title">
         <div class="container">
-            <h2 class="section-title fade-in">Our Process is the Secret</h2>
+            <h2 id="process-title" class="section-title fade-in">Our Process is the Secret</h2>
             <p class="section-subtitle fade-in">Design for business means doing it right every time. Our refined process ensures stunning results through incredible communication.</p>
             
             <div class="process-steps">
-                <div class="process-step fade-in">
-                    <div class="step-number">1</div>
+                <article class="process-step fade-in">
+                    <div class="step-number" aria-hidden="true">1</div>
                     <h4>Discovery & Research</h4>
                     <p>We diligently listen and research to understand your customers and what they seek. Understanding your business goals is our first priority.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">2</div>
+                </article>
+                <article class="process-step fade-in">
+                    <div class="step-number" aria-hidden="true">2</div>
                     <h4>Design & Strategy</h4>
                     <p>We explore your brand to refine or amplify your message to emphasize your value proposition clearly and attractively.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">3</div>
+                </article>
+                <article class="process-step fade-in">
+                    <div class="step-number" aria-hidden="true">3</div>
                     <h4>Development & Creation</h4>
                     <p>Using our refined system, we create stunning designs that tell your business's story and relate your solutions to customers' needs.</p>
-                </div>
-                <div class="process-step fade-in">
-                    <div class="step-number">4</div>
+                </article>
+                <article class="process-step fade-in">
+                    <div class="step-number" aria-hidden="true">4</div>
                     <h4>Launch & Support</h4>
                     <p>We deliver your finished project on time and provide ongoing support to ensure your continued success and satisfaction.</p>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section id="testimonials" class="testimonials" aria-labelledby="testimonials-title">
         <div class="container">
-            <h2 class="section-title fade-in">What Our Clients Say</h2>
+            <h2 id="testimonials-title" class="section-title fade-in">What Our Clients Say</h2>
             <p class="section-subtitle fade-in">Don't just take our word for it - hear from businesses who have transformed their brand with our designs.</p>
             
             <div class="testimonial-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-rating">★★★★★</div>
+                <article class="testimonial-card fade-in">
+                    <div class="testimonial-rating" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">"Bullale Associates exceeded our expectations and taught us possibilities that we would not have been aware of on our own. They designed and constructed designs that are both visually attractive and functionally amazing."</p>
                     <div class="testimonial-author">- Sarah Johnson, Restaurant Owner</div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-rating">★★★★★</div>
+                </article>
+                <article class="testimonial-card fade-in">
+                    <div class="testimonial-rating" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">"I have wanted professional business cards for years but didn't know if it was worth the investment. Bullale Associates designed cards for me and they were great to work with from beginning to end!"</p>
                     <div class="testimonial-author">- Michael Chen, Entrepreneur</div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-rating">★★★★★</div>
+                </article>
+                <article class="testimonial-card fade-in">
+                    <div class="testimonial-rating" aria-label="5 out of 5 stars">★★★★★</div>
                     <p class="testimonial-text">"The team has great communication and did an awesome job on our wedding invitations. We also used them for signage services as well, which we were very pleased with. Very reasonable rates."</p>
                     <div class="testimonial-author">- Emily & David, Married Couple</div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-labelledby="contact-title">
         <div class="container">
-            <h2 class="section-title fade-in">Get In Touch</h2>
+            <h2 id="contact-title" class="section-title fade-in">Get In Touch</h2>
             <p class="section-subtitle fade-in">Ready to transform your business with stunning design? Let's start the conversation today.</p>
             
             <!-- Appointment Notice -->
             <div class="appointment-notice fade-in">
-                <div class="notice-icon">📅</div>
+                <div class="notice-icon" aria-hidden="true">📅</div>
                 <h3>Appointment Only</h3>
                 <p>Currently, we don't accept walk-ins. Please schedule an appointment via phone call or email for the best service experience.</p>
             </div>
             
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item fade-in">
-                        <div class="icon">📧</div>
+                    <article class="contact-item fade-in">
+                        <div class="icon" aria-hidden="true">📧</div>
                         <div>
                             <h4>Email</h4>
-                            <p>info@bullale.com</p>
+                            <p><a href="mailto:info@bullale.com" style="color: inherit; text-decoration: none;">info@bullale.com</a></p>
                         </div>
-                    </div>
-                    <div class="contact-item fade-in">
-                        <div class="icon">📞</div>
+                    </article>
+                    <article class="contact-item fade-in">
+                        <div class="icon" aria-hidden="true">📞</div>
                         <div>
                             <h4>Phone</h4>
-                            <p>(612) 459-8541</p>
+                            <p><a href="tel:+16124598541" style="color: inherit; text-decoration: none;">(612) 459-8541</a></p>
                         </div>
-                    </div>
-                    <div class="contact-item fade-in">
-                        <div class="icon">🏢</div>
+                    </article>
+                    <article class="contact-item fade-in">
+                        <div class="icon" aria-hidden="true">🏢</div>
                         <div>
                             <h4>Address</h4>
                             <p>7 W Travelers Trl<br>Burnsville, MN 55337</p>
                         </div>
-                    </div>
-                    <div class="contact-item fade-in">
-                        <div class="icon">🕐</div>
+                    </article>
+                    <article class="contact-item fade-in">
+                        <div class="icon" aria-hidden="true">🕐</div>
                         <div>
                             <h4>Business Hours</h4>
                             <p><strong>Monday - Friday</strong><br>10:00 AM - 5:00 PM<br><em>Closed on Weekends</em></p>
                         </div>
-                    </div>
+                    </article>
                 </div>
                 <div class="contact-form fade-in">
-                    <form id="contactForm">
+                    <div class="form-success-message" id="successMessage">
+                        Thank you for your message! We'll get back to you within 24 hours.
+                    </div>
+                    <form id="contactForm" novalidate>
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <label for="name">Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true">
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(123) 456-7890">
                         </div>
                         <div class="form-group">
                             <label for="service">Service Interested In</label>
-                            <input type="text" id="service" name="service" placeholder="e.g., Business Cards, Website Development">
+                            <select id="service" name="service">
+                                <option value="">Select a service...</option>
+                                <option value="business-cards">Business Cards</option>
+                                <option value="website">Website Development</option>
+                                <option value="office-design">Office Interior & Exterior Design</option>
+                                <option value="restaurant">Restaurant Design</option>
+                                <option value="wedding">Wedding Posters & Invitations</option>
+                                <option value="signage">Business Signage</option>
+                                <option value="consultation">One-on-One Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..." required aria-required="true"></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
                     </form>
@@ -1577,25 +1935,68 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        ↑
+    </button>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        // Initialize EmailJS with your Public Key
+        // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
+        // Find it at: https://dashboard.emailjs.com/admin/account
+        emailjs.init('YOUR_PUBLIC_KEY'); // TODO: Add your EmailJS Public Key here
+    </script>
+
     <script>
         // Modal functionality (must be in global scope)
         function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            // Set focus to close button for accessibility
+            setTimeout(() => {
+                modal.querySelector('.close').focus();
+            }, 100);
         }
 
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             mobileMenuBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            // Update ARIA
+            const isExpanded = navLinks.classList.contains('active');
+            mobileMenuBtn.setAttribute('aria-expanded', isExpanded);
+        });
+
+        mobileOverlay.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
         });
 
         // Smooth scrolling
@@ -1604,9 +2005,10 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
                     });
                 }
             });
@@ -1654,34 +2056,141 @@
             }
         });
 
-        // Contact form handling
+        // Contact form handling with EmailJS
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
             const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
+            const message = document.getElementById('message').value.trim();
+            const submitBtn = this.querySelector('.submit-btn');
+            const successMessage = document.getElementById('successMessage');
             
-            const subject = `New Project Inquiry from ${name}`;
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0AService: ${service}%0D%0A%0D%0AMessage:%0D%0A${message}`;
-            const mailtoLink = `mailto:info@bullale.com?subject=${subject}&body=${body}`;
+            // Basic validation
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
             
-            window.location.href = mailtoLink;
-            alert('Thank you for your message! Your email client should open shortly.');
-            this.reset();
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Prepare template parameters
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                phone: phone || 'Not provided',
+                service: service || 'Not specified',
+                message: message,
+                to_email: 'info@bullale.com'
+            };
+            
+            // Send email using EmailJS
+            emailjs.send('service_qmoausf', 'template_6fcdx5i', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    
+                    // Show success message
+                    successMessage.textContent = 'Thank you for your message! We\'ll get back to you within 24 hours.';
+                    successMessage.style.background = '#d4edda';
+                    successMessage.style.color = '#155724';
+                    successMessage.classList.add('show');
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                    
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    
+                    // Show error message
+                    successMessage.textContent = 'Oops! Something went wrong. Please try again or email us directly at info@bullale.com';
+                    successMessage.style.background = '#f8d7da';
+                    successMessage.style.color = '#721c24';
+                    successMessage.classList.add('show');
+                    
+                    // Hide error message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                })
+                .finally(function() {
+                    // Re-enable submit button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                });
         });
 
         // Navbar scroll effect
+        let lastScroll = 0;
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.15)';
+            const currentScroll = window.scrollY;
+            
+            if (currentScroll > 50) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+                navbar.classList.remove('scrolled');
             }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Trap focus in modal for accessibility
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    const focusableElements = modal.querySelectorAll(
+                        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                    );
+                    const firstFocusable = focusableElements[0];
+                    const lastFocusable = focusableElements[focusableElements.length - 1];
+
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstFocusable) {
+                            lastFocusable.focus();
+                            e.preventDefault();
+                        }
+                    } else {
+                        if (document.activeElement === lastFocusable) {
+                            firstFocusable.focus();
+                            e.preventDefault();
+                        }
+                    }
+                }
+            });
         });
     </script>
 </body>
