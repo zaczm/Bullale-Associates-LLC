@@ -37,7 +37,7 @@
             --darker-navy: #141d2b;
             --light-green: #3dd44d;
             --emerald: #10b981;
-            --green-light: #202120;
+            --green-light: #e8f7ec;
             --text-dark: #1a2332;
             --text-medium: #4a5568;
             --text-light: #718096;
@@ -390,19 +390,12 @@
         .hero-image-main img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: opacity 1s ease-in-out;
-            position: absolute;
-            top: 0;
-            left: 0;
+            object-fit: cover;
+            transition: var(--transition);
         }
 
-        .hero-image-main img.fade-out {  /* ← ADD THIS BLOCK */
-            opacity: 0;
-        }
-
-        .hero-image-main img.fade-in {  /* ← ADD THIS BLOCK */
-            opacity: 1;
+        .hero-image-main:hover img {
+            transform: scale(1.05);
         }
 
         .hero-image-badge {
@@ -864,34 +857,20 @@
             border-color: var(--primary-green);
         }
 
-        .portfolio-image-wrapper {  /* ← ADD THIS BLOCK */
-            position: relative;
-            width: 100%;
-            height: 300px;
-            background: #f7fafc;
-            overflow: hidden;
-        }
-
         .portfolio-item img {
             width: 100%;
             height: 300px;
-            object-fit: contain;
-             background: #f7fafc;
-            transition: opacity 1s ease-in-out;
-            position: absolute;  /* ← ADD THIS LINE */
-            top: 0;  /* ← ADD THIS LINE */
-            left: 0;  /* ← ADD THIS LINE */
-
+            object-fit: cover;
+            transition: var(--transition);
         }
 
-        .portfolio-item img.fade-out {  /* ← ADD THIS BLOCK */
-            opacity: 0;
+        .portfolio-item:hover img {
+            transform: scale(1.15);
         }
 
-        .portfolio-item img.fade-in {  /* ← ADD THIS BLOCK */
-            opacity: 1;
+        .portfolio-content {
+            padding: 2.5rem;
         }
-
 
         .portfolio-content h4 {
             font-size: 1.6rem;
@@ -1020,8 +999,7 @@
         .showroom-item img {
             width: 100%;
             height: 250px;
-            object-fit: contain;
-            background: #f7fafc;
+            object-fit: cover;
         }
 
         .showroom-item-content {
@@ -1769,11 +1747,9 @@
                 <!-- Image First -->
                 <div class="hero-image-container">
                     <div class="hero-image-main">
-                       <img src="Home_second_tab.png" alt="Professional web development specialist" class="hero-img-1 fade-in">
-                       <img src="Home_first_tab.png" alt="Creative design showcase" class="hero-img-2 fade-out">
-                       <div class="hero-image-badge">
-                            <div class="badge-label">Trusted by brands</div>
-                            <div class="badge-text">Nationwide</div>
+                        <img src="Home_second_tab.png" alt="Professional web development specialist showcasing our design work">
+                        <div class="hero-image-badge">
+                        </div>
                     </div>
                 </div>
 
@@ -1969,10 +1945,7 @@
                     </div>
                 </article>
                 <article class="portfolio-item fade-in">
-                   <div class="portfolio-image-wrapper">
-                        <img src="business-signage.png" alt="Professional business signage" loading="lazy" class="portfolio-img-1 fade-in">
-                        <img src="business-cards-design.png" alt="Professional business cards" loading="lazy" class="portfolio-img-2 fade-out">
-                    </div>
+                    <img src="business-signage.png" alt="Professional business signage and promotional materials" loading="lazy">
                     <div class="portfolio-content">
                         <h4>Business Signage</h4>
                         <p>Professional signage and promotional materials that capture attention and build your brand.</p>
@@ -2347,7 +2320,7 @@
                         <a href="https://www.instagram.com/bullale.llc?igsh=MWt2encxZTJuZG41" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
-                        <a href="https://x.com/bullale_llc?s=21" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+                        <a href="https://x.com/bullale_llc?s=21" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="X (Twitter)">
                             <i class="fa-brands fa-x-twitter"></i>
                         </a>
                         <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
@@ -2383,6 +2356,10 @@
                         </div>
                         <div class="footer-contact-item">
                             <i class="fa-solid fa-location-dot"></i>
+                            <div>
+                                Minneapolis, MN<br>
+                                7 W Travelers Trl, Burnsville<br>
+                                MN 55337
                             </div>
                         </div>
                     </div>
@@ -2611,63 +2588,3 @@
     </script>
 </body>
 </html>
-// ========================================
-// IMAGE ROTATION SCRIPT FOR BULLALE ASSOCIATES WEBSITE
-// ========================================
-// Add this script at the end of your HTML, just before the closing </script> tag
-// in the existing JavaScript section (after the setActiveNav function)
-
-// Hero Image Rotation - Rotates between Home_second_tab.png and Home_first_tab.png
-function rotateHeroImages() {
-    const img1 = document.querySelector('.hero-img-1');
-    const img2 = document.querySelector('.hero-img-2');
-    
-    if (!img1 || !img2) return;
-    
-    setInterval(() => {
-        if (img1.classList.contains('fade-in')) {
-            img1.classList.remove('fade-in');
-            img1.classList.add('fade-out');
-            img2.classList.remove('fade-out');
-            img2.classList.add('fade-in');
-        } else {
-            img1.classList.remove('fade-out');
-            img1.classList.add('fade-in');
-            img2.classList.remove('fade-in');
-            img2.classList.add('fade-out');
-        }
-    }, 4000); // Switch every 4 seconds
-}
-
-// Portfolio Image Rotation - Rotates between business-signage.png and business-cards-design.png
-function rotatePortfolioImages() {
-    const img1 = document.querySelector('.portfolio-img-1');
-    const img2 = document.querySelector('.portfolio-img-2');
-    
-    if (!img1 || !img2) return;
-    
-    setInterval(() => {
-        if (img1.classList.contains('fade-in')) {
-            img1.classList.remove('fade-in');
-            img1.classList.add('fade-out');
-            img2.classList.remove('fade-out');
-            img2.classList.add('fade-in');
-        } else {
-            img1.classList.remove('fade-out');
-            img1.classList.add('fade-in');
-            img2.classList.remove('fade-in');
-            img2.classList.add('fade-out');
-        }
-    }, 4000); // Switch every 4 seconds
-}
-
-// Initialize image rotation when page loads
-window.addEventListener('DOMContentLoaded', () => {
-    rotateHeroImages();
-    rotatePortfolioImages();
-    console.log('Image rotation initialized');
-});
-
-// ========================================
-// END OF IMAGE ROTATION SCRIPT
-// ========================================
