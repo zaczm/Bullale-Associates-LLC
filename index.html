@@ -1193,6 +1193,48 @@
             gap: 2rem;
         }
 
+        /* What Happens Next */
+        .what-happens-next {
+            background: var(--bg-white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            border: 2px solid rgba(46, 204, 64, 0.1);
+        }
+
+        .what-happens-next h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .next-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .next-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .step-icon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-width: 30px;
+        }
+
+        .next-step p {
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
         .contact-item {
             display: flex;
             align-items: flex-start;
@@ -1355,18 +1397,210 @@
             line-height: 1.8;
         }
 
+        /* Project Application Card */
+        .project-card {
+            background: var(--dark-navy);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .project-card h3 {
+            color: var(--text-white);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .project-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 18px 40px;
+            background: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(46, 204, 64, 0.3);
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .project-btn:hover {
+            background: var(--light-green);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(46, 204, 64, 0.4);
+        }
+
         /* Footer - Dark Navy */
         .footer {
             background: var(--dark-navy);
             color: var(--text-white);
-            text-align: center;
-            padding: 4rem 0;
+            padding: 5rem 0 0;
             border-top: 1px solid rgba(46, 204, 64, 0.2);
         }
 
-        .footer p {
-            font-size: 1.15rem;
-            opacity: 0.9;
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 2px 8px rgba(46, 204, 64, 0.3));
+        }
+
+        .footer-logo span {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(46, 204, 64, 0.3);
+        }
+
+        .footer-section h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+            transform: translateX(5px);
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .footer-contact-item i {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .footer-contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 968px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-tagline {
+                max-width: 100%;
+            }
         }
 
         /* Back to Top */
@@ -1587,7 +1821,7 @@
                     <div class="stat-label">Client Satisfaction</div>
                 </div>
                 <div class="stat-item fade-in">
-                    <div class="stat-number">5+</div>
+                    <div class="stat-number">2+</div>
                     <div class="stat-label">Years Experience</div>
                 </div>
             </div>
@@ -2016,6 +2250,32 @@
             
             <div class="contact-content">
                 <div class="contact-info">
+                    <!-- What Happens Next -->
+                    <div class="what-happens-next fade-in">
+                        <h3>What happens next?</h3>
+                        <div class="next-steps">
+                            <div class="next-step">
+                                <span class="step-icon" style="color: var(--primary-green);">✓</span>
+                                <p>We'll respond within 24 hours</p>
+                            </div>
+                            <div class="next-step">
+                                <span class="step-icon" style="color: #e74c3c;">⏱</span>
+                                <p>15-minute discovery call</p>
+                            </div>
+                            <div class="next-step">
+                                <span class="step-icon" style="color: var(--text-dark);">→</span>
+                                <p>Custom proposal within 48 hours</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ready for Full Project -->
+                    <div class="project-card fade-in">
+                        <h3>Ready for a Full Project?</h3>
+                        <p>If you're looking to work with us on branding, web design, video production, or a complete brand experience, fill out our project application.</p>
+                        <a href="#contact" class="project-btn">Start Your Project Application</a>
+                    </div>
+
                     <article class="contact-item fade-in">
                         <div class="icon">📧</div>
                         <div>
@@ -2090,7 +2350,68 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Bullale Associates LLC. All rights reserved. | Your imagination is our next masterpiece</p>
+            <div class="footer-content">
+                <!-- Brand Section -->
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <img src="Bullale embelem _logo.png" alt="Bullale Associates Logo">
+                        <span>Bullale Associates</span>
+                    </a>
+                    <p class="footer-tagline">Minnesota creative agency building brands through strategic creativity, from brand strategy to digital development and compelling storytelling.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram">
+                            <span>📷</span>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+                            <span>🐦</span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                            <span>💼</span>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="YouTube">
+                            <span>📺</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company Links -->
+                <div class="footer-section">
+                    <h4>COMPANY</h4>
+                    <div class="footer-links">
+                        <a href="#services">Services</a>
+                        <a href="#portfolio">Portfolio</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h4>CONTACT</h4>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <span>📞</span>
+                            <a href="tel:+16124598541">(612) 459-8541</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <span>📧</span>
+                            <a href="mailto:info@bullale.com">info@bullale.com</a>
+                        </div>
+                        <div class="footer-contact-item">
+                            <span>📍</span>
+                            <div>
+                                Minneapolis, MN<br>
+                                7 W Travelers Trl, Burnsville<br>
+                                MN 55337
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 Bullale Associates LLC. All rights reserved. | Strategic Creativity for Brands Nationwide</p>
+            </div>
         </div>
     </footer>
 
